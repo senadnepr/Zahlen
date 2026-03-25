@@ -24,6 +24,7 @@
 		6D09DAC22F6CA8A900D01322 /* TrainingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D09DABC2F6CA8A900D01322 /* TrainingView.swift */; };
 		6D09DAC32F6CA8A900D01322 /* ZahlenApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D09DABD2F6CA8A900D01322 /* ZahlenApp.swift */; };
 		6D09DAC52F6CA8D200D01322 /* NumberToGermanConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D09DAC42F6CA8D200D01322 /* NumberToGermanConverterTests.swift */; };
+		6D10A0D42F74863C006B675A /* project_overview.md in Resources */ = {isa = PBXBuildFile; fileRef = 6D10A0D32F74863C006B675A /* project_overview.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		6D09DABC2F6CA8A900D01322 /* TrainingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingView.swift; sourceTree = "<group>"; };
 		6D09DABD2F6CA8A900D01322 /* ZahlenApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZahlenApp.swift; sourceTree = "<group>"; };
 		6D09DAC42F6CA8D200D01322 /* NumberToGermanConverterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberToGermanConverterTests.swift; sourceTree = "<group>"; };
+		6D10A0D32F74863C006B675A /* project_overview.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = project_overview.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		6D09DA782F6CA5D100D01322 = {
 			isa = PBXGroup;
 			children = (
+				6D10A0D32F74863C006B675A /* project_overview.md */,
 				6D09DA832F6CA5D100D01322 /* Zahlen */,
 				6D09DA942F6CA5D400D01322 /* ZahlenTests */,
 				6D09DA9E2F6CA5D400D01322 /* ZahlenUITests */,
@@ -261,6 +264,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D10A0D42F74863C006B675A /* project_overview.md in Resources */,
 				6D09DA8C2F6CA5D400D01322 /* Preview Assets.xcassets in Resources */,
 				6D09DA892F6CA5D400D01322 /* Assets.xcassets in Resources */,
 			);
