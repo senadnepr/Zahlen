@@ -68,8 +68,19 @@ class TrainingViewModel: ObservableObject {
             }
         } else if !cleanedDigits.isEmpty {
             inputPreference = .digits
+            
+            // Check if exact match first
             if cleanedDigits == targetDigits {
                 isCorrect = true
+            } else if cleanedDigits.contains(":") && targetDigits.contains(":") {
+                // Time parser validation
+                if let uParts = parseTime(cleanedDigits), let tParts = parseTime(targetDigits) {
+                    if uParts.minute == tParts.minute {
+                        if (uParts.hour % 12) == (tParts.hour % 12) {
+                            isCorrect = true
+                        }
+                    }
+                }
             }
         }
         
@@ -86,6 +97,15 @@ class TrainingViewModel: ObservableObject {
             resultState = .wrong
             triggerHaptic(success: false)
         }
+    }
+    
+    // Helper to decompose time strings like "7:45", "07:45", "19:45"
+    private func parseTime(_ timeStr: String) -> (hour: Int, minute: Int)? {
+        let parts = timeStr.trimmingCharacters(in: .whitespaces).components(separatedBy: ":")
+        guard parts.count == 2,
+              let h = Int(parts[0]),
+              let m = Int(parts[1]) else { return nil }
+        return (h, m)
     }
     
     func repeatAudio() {

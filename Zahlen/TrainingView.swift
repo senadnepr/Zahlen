@@ -40,6 +40,7 @@ struct TrainingView: View {
                 .padding(.top, 40)
                 
                 VStack(spacing: 16) {
+                    /*
                     TextField("Zahl als Wort eingeben", text: $viewModel.userInput)
                         .textFieldStyle(.roundedBorder)
                         .focused($focusedField, equals: .words)
@@ -59,6 +60,7 @@ struct TrainingView: View {
                                 viewModel.inputPreference = .words
                             }
                         }
+                    */
                     
                     TextField("Oder als Ziffern eingeben (z.B. 42)", text: $viewModel.userDigitsInput)
                         .textFieldStyle(.roundedBorder)
@@ -104,9 +106,11 @@ struct TrainingView: View {
                             .foregroundColor(.red)
                             .bold()
                         
+                        // Text("Richtig: \(viewModel.currentItem?.targetText ?? "") (\(viewModel.currentItem?.numericString ?? ""))")
                         Text("Richtig: \(viewModel.currentItem?.targetText ?? "")")
                             .font(.headline)
                             .foregroundColor(.secondary)
+                            // .multilineTextAlignment(.center)
                         
                         HStack(spacing: 20) {
                             Button("Wiederholen") {

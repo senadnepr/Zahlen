@@ -11,10 +11,10 @@ Zahlen is an iOS app built with Swift and SwiftUI that helps users practice hear
 ## Core Components
 - **`ZahlenApp.swift` / `ContentView.swift`**: Application entry point, routing to `HomeView`.
 - **`HomeView.swift`**: The main menu presenting training modes (`NumberMode`) and settings.
-- **`TrainingView.swift` & `TrainingViewModel.swift`**: The core session screen and its logic. `TrainingViewModel` evaluates input, tracks session progress (`tasksPerSession`), and triggers success/error haptic feedback.
+- **`TrainingView.swift` & `TrainingViewModel.swift`**: The core session screen and its logic. `TrainingViewModel` evaluates input, supports flexible 12/24-hour time entry parsing, tracks session progress (`tasksPerSession`), and triggers success/error haptic feedback.
 - **`NumberMode.swift`**: Enum defining the practice modes (two-digit, three-digit, four-digit, all numbers, time, dates).
-- **`NumberGenerator.swift`**: Generates random targets based on the chosen mode while preventing immediate repetition within a session.
-- **`NumberToGermanConverter.swift`**: Translates numeric values, times, and dates into correct German text.
+- **`NumberGenerator.swift`**: Generates random targets based on the chosen mode while preventing immediate repetition within a session. Randomizes between formal and informal representations for `time` mode.
+- **`NumberToGermanConverter.swift`**: Translates numeric values, times (both formal and colloquial 12-hour phrasing), and dates into correct German text.
 - **`SpeechService.swift`**: Uses iOS speech synthesis to read the generated German text.
 - **`SettingsView.swift` / `SettingsManager.swift`**: UI and `@AppStorage` helpers for user preferences.
 

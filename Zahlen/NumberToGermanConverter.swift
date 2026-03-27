@@ -56,13 +56,44 @@ class NumberToGermanConverter {
         return result
     }
     
-    func convert(hour: Int, minute: Int) -> String {
-        let hourText = convert(number: hour)
-        if minute == 0 {
-            return "\(hourText) Uhr"
+    enum TimeStyle {
+        case formal
+        case informal
+    }
+    
+    func convert(hour: Int, minute: Int, style: TimeStyle = .formal) -> String {
+        if style == .formal {
+            let hourText = (hour == 1) ? "ein" : convert(number: hour)
+            if minute == 0 {
+                return "\(hourText) Uhr"
+            }
+            return "\(convert(number: hour)) Uhr \(convert(number: minute))"
+        } else {
+            let hour12 = hour % 12 == 0 ? 12 : hour % 12
+            let nextHour12 = (hour + 1) % 12 == 0 ? 12 : (hour + 1) % 12
+            
+            let hourText = (hour12 == 1) ? "eins" : convert(number: hour12)
+            let nextHourText = (nextHour12 == 1) ? "eins" : convert(number: nextHour12)
+            
+            switch minute {
+            case 0:
+                let hText = (hour12 == 1) ? "ein" : convert(number: hour12)
+                return "\(hText) Uhr"
+            case 5:   return "fünf nach \(hourText)"
+            case 10:  return "zehn nach \(hourText)"
+            case 15:  return "viertel nach \(hourText)"
+            case 20:  return "zwanzig nach \(hourText)"
+            case 25:  return "fünf vor halb \(nextHourText)"
+            case 30:  return "halb \(nextHourText)"
+            case 35:  return "fünf nach halb \(nextHourText)"
+            case 40:  return "zwanzig vor \(nextHourText)"
+            case 45:  return "viertel vor \(nextHourText)"
+            case 50:  return "zehn vor \(nextHourText)"
+            case 55:  return "fünf vor \(nextHourText)"
+            default:
+                return convert(hour: hour, minute: minute, style: .formal)
+            }
         }
-        let minuteText = convert(number: minute)
-        return "\(hourText) Uhr \(minuteText)"
     }
     
     func convert(day: Int, month: Int, year: Int) -> String {

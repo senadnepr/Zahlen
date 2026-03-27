@@ -61,20 +61,27 @@ class NumberGenerator {
     }
     
     private func generateTime() -> GeneratedItem {
+        var isInformal = Bool.random()
         var hour = Int.random(in: 0...23)
-        var minute = Int.random(in: 0...59)
+        var minute = isInformal ? (Int.random(in: 0...11) * 5) : Int.random(in: 0...59)
+        
         var timeStr = String(format: "%02d:%02d", hour, minute)
+        var uniquenessKey = "\(timeStr)_\(isInformal ? "informal" : "formal")"
         
         var attempts = 0
-        while alreadyUsedTimes.contains(timeStr) && attempts < 100 {
+        while alreadyUsedTimes.contains(uniquenessKey) && attempts < 100 {
+            isInformal = Bool.random()
             hour = Int.random(in: 0...23)
-            minute = Int.random(in: 0...59)
+            minute = isInformal ? (Int.random(in: 0...11) * 5) : Int.random(in: 0...59)
             timeStr = String(format: "%02d:%02d", hour, minute)
+            uniquenessKey = "\(timeStr)_\(isInformal ? "informal" : "formal")"
             attempts += 1
         }
-        alreadyUsedTimes.insert(timeStr)
+        alreadyUsedTimes.insert(uniquenessKey)
         
-        let germanText = NumberToGermanConverter.shared.convert(hour: hour, minute: minute)
+        let style: NumberToGermanConverter.TimeStyle = isInformal ? .informal : .formal
+        let germanText = NumberToGermanConverter.shared.convert(hour: hour, minute: minute, style: style)
+        
         return GeneratedItem(
             numericString: timeStr,
             targetText: germanText,

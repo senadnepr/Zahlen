@@ -52,6 +52,19 @@ final class NumberToGermanConverterTests: XCTestCase {
         XCTAssertEqual(converter.convert(hour: 14, minute: 30), "vierzehn Uhr dreißig")
         XCTAssertEqual(converter.convert(hour: 0, minute: 0), "null Uhr")
         XCTAssertEqual(converter.convert(hour: 23, minute: 59), "dreiundzwanzig Uhr neunundfünfzig")
+        XCTAssertEqual(converter.convert(hour: 1, minute: 0), "ein Uhr")
+    }
+    
+    func testInformalTime() {
+        XCTAssertEqual(converter.convert(hour: 14, minute: 30, style: .informal), "halb drei")
+        XCTAssertEqual(converter.convert(hour: 14, minute: 15, style: .informal), "viertel nach zwei")
+        XCTAssertEqual(converter.convert(hour: 14, minute: 45, style: .informal), "viertel vor drei")
+        XCTAssertEqual(converter.convert(hour: 0, minute: 0, style: .informal), "zwölf Uhr")
+        XCTAssertEqual(converter.convert(hour: 1, minute: 0, style: .informal), "ein Uhr")
+        XCTAssertEqual(converter.convert(hour: 13, minute: 0, style: .informal), "ein Uhr")
+        XCTAssertEqual(converter.convert(hour: 23, minute: 5, style: .informal), "fünf nach elf")
+        XCTAssertEqual(converter.convert(hour: 9, minute: 35, style: .informal), "fünf nach halb zehn")
+        XCTAssertEqual(converter.convert(hour: 9, minute: 25, style: .informal), "fünf vor halb zehn")
     }
     
     func testDates() {
